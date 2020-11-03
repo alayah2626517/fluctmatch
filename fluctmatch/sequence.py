@@ -1,8 +1,8 @@
-sequences = {'nome': {'bdna+bdna': 'CGCGCGCGCGCGC'},
-             'me1': {'bdna+bdna': 'CGCGCGCGCGCGC'},
-             'me2': {'bdna+bdna': 'CGCGCGCGCGCGC'},
-             'me3': {'bdna+bdna': 'CGCGCGCGCGCGC'},
-             'me12': {'bdna+bdna': 'CGCGCGCGCGCGC'},
-             'me23': {'bdna+bdna': 'CGCGCGCGCGCGC'},
-             'me123': {'bdna+bdna': 'CGCGCGCGCGCGC'}
+sequences = {'nome': 'CGCGCGCGCGCGC',
+             'me1': 'CGCGCGCGCGCGC',
+             'me2': 'CGCGCGCGCGCGC',
+             'me3': 'CGCGCGCGCGCGC',
+             'me12': 'CGCGCGCGCGCGC',
+             'me23': 'CGCGCGCGCGCGC',
+             'me123': 'CGCGCGCGCGCGC'
              }
