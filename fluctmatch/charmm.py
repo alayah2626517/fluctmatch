@@ -1,5 +1,5 @@
 d_restype = {'nucleic acid': {'A': 'ADE', 'T': 'THY', 'C': 'CYT', 'G': 'GUA', 'U': 'URA'},
-             'protein': {}}
+            }
 
 
 class Script:
@@ -17,15 +17,15 @@ class Script:
         if description is None:
             self.write_head()
         else:
-            self.write_head(author='Yi-Tsao Chen', description=description)
+            self.write_head(author='Hung Hsin-Yun', description=description)
 
-    def write_head(self, author='Yi-Tsao Chen', description=''):
+    def write_head(self, author='Hung Hsin-Yun', description=''):
         self.f.write('* Author: {0}\n* {1}\n\n'.format(author, description))
 
     def write_bomlev(self, bomlev=-2):
         self.f.write('bomlev {0}\n\n'.format(str(bomlev)))
 
-    def initialize_rtf_prm(self, rtfprm_folder='/home/yizaochen/prm_rtf', amber=False):
+    def initialize_rtf_prm(self, rtfprm_folder='/Users/alayah361/Documents/Research/work/methylation/cg_13/fluctmatch', amber=False):
         self.f.write('set topdir = {0}\n'.format(rtfprm_folder))
         if amber:
             self.f.write('open unit 11 read form name @topdir/parm14sb_all.rtf\n')
