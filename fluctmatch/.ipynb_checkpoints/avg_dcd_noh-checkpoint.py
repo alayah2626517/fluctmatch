@@ -1,10 +1,10 @@
 from os import path
 from shutil import copyfile
 from subprocess import check_call
-from fluctmatch.charmm import Script
-from fluctmatch.miscell import check_dir_exist_and_make, get_patch
-from fluctmatch.sequence import sequences
-from fluctmatch import PDB
+from charmm import Script
+from miscell import check_dir_exist_and_make, get_patch
+from sequence import sequences
+import PDB
 
 charmm = '/Users/alayah361/Documents/Research/charmm/bin/charmm'
 

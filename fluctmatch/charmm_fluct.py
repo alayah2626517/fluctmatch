@@ -12,9 +12,9 @@ class Script:
         if description is None:
             self.write_head()
         else:
-            self.write_head(author='Yi-Tsao Chen', description=description)
+            self.write_head(author='Hung Hsin-Yun', description=description)
             
-    def write_head(self, author='Yi-Tsao Chen', description=''):
+    def write_head(self, author='Hung Hsin-Yun', description=''):
         self.f.write('* Author: {0}\n* {1}\n\n'.format(author, description))
 
     def write_bomlev(self, bomlev=-2):
