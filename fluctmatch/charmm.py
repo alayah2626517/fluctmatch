@@ -26,7 +26,7 @@ class Script:
         self.f.write('bomlev {0}\n\n'.format(str(bomlev)))
 
     def initialize_rtf_prm(self, rtfprm_folder='/Users/alayah361/Documents/Research/work/methylation/cg_13/fluctmatch', amber=False):
-        self.f.write('set topdir = {0}\n'.format(rtfprm_folder))
+        self.f.write('set topdir = {0}\n\n'.format(rtfprm_folder))
         if amber:
             self.f.write('open unit 11 read form name @topdir/parm14sb_all.rtf\n')
             self.f.write('read rtf card unit 11\n')
@@ -36,21 +36,11 @@ class Script:
             self.f.write('read param unit 11 flex\n')
             self.f.write('close unit 11\n\n')
         else:
-            self.f.write('open unit 11 read form name @topdir/top_all36_prot.rtf\n')
-            self.f.write('read rtf card unit 11\n')
-            self.f.write('close unit 11\n\n')
-
-            self.f.write('open read unit 11 card name @topdir/par_all36_prot.prm\n')
-            self.f.write('read param unit 11 flex\n')
-            self.f.write('close unit 11\n\n')
-
-            self.f.write('open unit 11 read form name @topdir/top_all36_na.rtf\n')
-            self.f.write('read rtf card unit 11 appe\n')
-            self.f.write('close unit 11\n\n')
-
-            self.f.write('open read unit 11 card name @topdir/par_all36_na.prm\n')
-            self.f.write('read param unit 11 flex appe\n')
-            self.f.write('close unit 11\n\n')
+            self.f.write('read rtf card name @topdir/top_all36_na.rtf\n')
+            self.f.write('read rtf card name @topdir/top_all36_prot.rtf append\n')
+            self.f.write('read para card name @topdir/par_all36_na.prm flex\n')
+            self.f.write('read para card name @topdir/par_all36_prot.prm append flex\n')
+            self.f.write('stream @topdir/toppar_all36_na_modifications.str\n\n')
 
     def write_seq(self, sequence, segid='nucleic', firstter=None, lastter=None, type_molecule='nucleic acid'):
         """
@@ -69,7 +59,6 @@ class Script:
             self.f.write('{0} '.format(d_restype[type_molecule][res]))
         self.f.write('\n\n')
         if (firstter is None) and (lastter is None):
-            # self.f.write('generate {0} setup\n\n'.format(segid))
             self.f.write('generate {0} setup first None last None\n\n'.format(segid))
         elif firstter == 'amber_5ter' and lastter == 'amber_3ter':
             self.f.write('generate {0} setup\n\n'.format(segid))

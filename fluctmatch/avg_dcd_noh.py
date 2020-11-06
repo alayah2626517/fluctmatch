@@ -4,6 +4,7 @@ from subprocess import check_call
 from fluctmatch.charmm import Script
 from fluctmatch.miscell import check_dir_exist_and_make, get_patch
 from fluctmatch.sequence import sequences
+from fluctmatch.sequence import sequences_me
 from fluctmatch import PDB
 
 charmm = '/Users/alayah361/Documents/Research/charmm/bin/charmm'
@@ -24,6 +25,7 @@ class AvgcrddcdAgent:
         self.make_folders()
         self.seq1 = sequences[self.host][self.type_na]['guide']
         self.seq2 = sequences[self.host][self.type_na]['target']
+        self.seqme1 = sequences_me[self.host][self.type_na]
         self.inp_dcd = path.join(self.aa_folder, '{0}.central.dcd'.format(type_na))
 
     def make_folders(self):
@@ -39,13 +41,13 @@ class AvgcrddcdAgent:
             supplement2 = None 
         elif self.type_na == 'bdna+bdna':
             na = 'bdna'
-            supplement1 = get_patch(self.seq1, 1)
+            supplement1 = get_patch(self.seq1, self.seqme1, 1)
             supplement2 = get_patch(self.seq2, 2)
 
         crd1 = path.join(self.mkcrd_folder, '{0}1.crd'.format(na))
         inp1 = Script(path.join(self.mkcrd_folder, '{0}1.inp'.format(na)))
         inp1.write_bomlev()
-        inp1.initialize_rtf_prm(amber=amber)
+        inp1.initialize_rtf_prm()
         inp1.write_seq(self.seq1, firstter=firstter, lastter=lastter, segid='strand1')
         if supplement1 is not None:
             inp1.write_supplement(supplement1)
@@ -122,7 +124,7 @@ class AvgcrddcdAgent:
 
         inp = Script(f_inp)
         inp.write_bomlev()
-        inp.initialize_rtf_prm(amber=amber)
+        inp.initialize_rtf_prm()
         inp.write_seq(self.seq1, firstter=firstter, lastter=lastter, segid='strand1')
         if supplement1 is not None:
             inp.write_supplement(supplement1)
