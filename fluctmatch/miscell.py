@@ -2,18 +2,24 @@ from os import path, mkdir
 import pickle
 import numpy as np
 
-def get_patch(seq, seqme, strand_id):
+def get_patch(seq, strand_id):
     patchlist = list()
-    terminate = len(seq) - 1
     for i, nt in enumerate(seq):
         if i == 0:
             temp = f'patch deo5 strand{strand_id} {i+1} setup warn\n'
         else:
             temp = f'patch deox strand{strand_id} {i+1} setup warn\n'
-    for i, nt in enumerate(seqme):
-        if nt == 'X':
-            temp = f'patch 5MC2 strand{strand_id} {i+1} setup warn\n'
         patchlist.append(temp)
+    return ''.join(patchlist)
+
+def get_patch_me(seq, strand_id):
+    patchlist = list()
+    for j, ntme in enumerate(seq):
+        if ntme == 'X':
+            temp2 = f'patch 5MC2 strand{strand_id} {j+1} setup warn\n'
+        else:
+            temp2 = ' '
+        patchlist.append(temp2)
     return ''.join(patchlist)
 
 

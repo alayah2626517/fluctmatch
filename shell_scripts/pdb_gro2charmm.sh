@@ -2,7 +2,7 @@
 # Program:
 #       This program convert gromac's output pdb into pdb which charmm can process 
 
-rootfolder=/Users/alayah361/Documents/Research/work/methylation/cg_13/fluctmatch
+rootfolder=/Users/alayah361/fluctmatch
 host=nome
 type_na=bdna+bdna
 strand_num=2
@@ -44,12 +44,10 @@ sed 's/2H6/H62/g'|\
 sed 's/1H4/H41/g'|\
 sed 's/2H4/H42/g'|\
 sed 's/C7 /C5M/g'|\
-sed 's/H71/H51/g'|\
-sed 's/H72/H52/g'|\
-sed 's/H73/H53/g'|\
 sed 's/ H71/H5M1/g'|\
 sed 's/ H72/H5M2/g'|\
-sed 's/ H73/H5M3/g'\
+sed 's/ H73/H5M3/g'|\
+sed 's/ DMC/CYT /g'\
 >> ${outputfolder}/$SYSTEM.1.pdb
 echo 'END' >> ${outputfolder}/$SYSTEM.1.pdb
 

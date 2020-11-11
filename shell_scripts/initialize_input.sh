@@ -3,7 +3,7 @@
 #       This program sets up dcd and pdb of central base-pairs
 
 # Ad hocs
-rootfolder=/Users/alayah361/Documents/Research/work/methylation/cg_13/fluctmatch
+rootfolder=/Users/alayah361/fluctmatch
 host=nome
 type_na=bdna+bdna
 

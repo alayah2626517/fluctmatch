@@ -25,7 +25,7 @@ class Script:
     def write_bomlev(self, bomlev=-2):
         self.f.write('bomlev {0}\n\n'.format(str(bomlev)))
 
-    def initialize_rtf_prm(self, rtfprm_folder='/Users/alayah361/Documents/Research/work/methylation/cg_13/fluctmatch', amber=False):
+    def initialize_rtf_prm(self, rtfprm_folder='/Users/alayah361/fluctmatch', amber=False):
         self.f.write('set topdir = {0}\n\n'.format(rtfprm_folder))
         if amber:
             self.f.write('open unit 11 read form name @topdir/parm14sb_all.rtf\n')

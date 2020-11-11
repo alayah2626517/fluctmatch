@@ -2,9 +2,8 @@ from os import path
 from shutil import copyfile
 from subprocess import check_call
 from fluctmatch.charmm import Script
-from fluctmatch.miscell import check_dir_exist_and_make, get_patch
-from fluctmatch.sequence import sequences
-from fluctmatch.sequence import sequences_me
+from fluctmatch.miscell import check_dir_exist_and_make, get_patch, get_patch_me
+from fluctmatch.sequence import sequences, sequences_me
 from fluctmatch import PDB
 
 charmm = '/Users/alayah361/Documents/Research/charmm/bin/charmm'
@@ -25,7 +24,7 @@ class AvgcrddcdAgent:
         self.make_folders()
         self.seq1 = sequences[self.host][self.type_na]['guide']
         self.seq2 = sequences[self.host][self.type_na]['target']
-        self.seqme1 = sequences_me[self.host][self.type_na]
+        self.seqme1 = sequences_me[self.host]
         self.inp_dcd = path.join(self.aa_folder, '{0}.central.dcd'.format(type_na))
 
     def make_folders(self):
@@ -41,8 +40,9 @@ class AvgcrddcdAgent:
             supplement2 = None 
         elif self.type_na == 'bdna+bdna':
             na = 'bdna'
-            supplement1 = get_patch(self.seq1, self.seqme1, 1)
+            supplement1 = get_patch(self.seq1, 1)
             supplement2 = get_patch(self.seq2, 2)
+            supplement1_me = get_patch_me(self.seqme1, 1)
 
         crd1 = path.join(self.mkcrd_folder, '{0}1.crd'.format(na))
         inp1 = Script(path.join(self.mkcrd_folder, '{0}1.inp'.format(na)))
@@ -51,6 +51,8 @@ class AvgcrddcdAgent:
         inp1.write_seq(self.seq1, firstter=firstter, lastter=lastter, segid='strand1')
         if supplement1 is not None:
             inp1.write_supplement(supplement1)
+        if supplement1_me is not None:
+            inp1.write_supplement(supplement1_me)
         inp1.gen_angle_dihedral()
         inp1.read_pdb(path.join(self.mkcrd_folder, '{0}1.1.pdb'.format(na)))
         inp1.write_crd(crd1)
@@ -90,6 +92,7 @@ class AvgcrddcdAgent:
         elif self.type_na == 'bdna+bdna':
             supplement1 = get_patch(self.seq1, 1)
             supplement2 = get_patch(self.seq2, 2)
+            supplement1_me = get_patch_me(self.seqme1, 1)
 
         f_inp = path.join(self.inp_folder, 'write_no_h_crd.inp')
         crd_inp = path.join(self.mkcrd_folder, '{0}.crd'.format(self.type_na))
@@ -101,6 +104,8 @@ class AvgcrddcdAgent:
         inp.write_seq(self.seq1, firstter=firstter, lastter=lastter, segid='strand1')
         if supplement1 is not None:
             inp.write_supplement(supplement1)
+        if supplement1_me is not None:
+            inp.write_supplement(supplement1_me)
         inp.write_seq(self.seq2, firstter=firstter, lastter=lastter, segid='strand2')
         if supplement2 is not None:
             inp.write_supplement(supplement2)
@@ -117,6 +122,7 @@ class AvgcrddcdAgent:
         elif self.type_na == 'bdna+bdna':
             supplement1 = get_patch(self.seq1, 1)
             supplement2 = get_patch(self.seq2, 2)
+            supplement1_me = get_patch_me(self.seqme1, 1)
 
         f_inp = path.join(self.inp_folder, 'write_no_h_dcd.inp')
         crd_inp = path.join(self.mkcrd_folder, '{0}.crd'.format(self.type_na))
@@ -128,6 +134,8 @@ class AvgcrddcdAgent:
         inp.write_seq(self.seq1, firstter=firstter, lastter=lastter, segid='strand1')
         if supplement1 is not None:
             inp.write_supplement(supplement1)
+        if supplement1_me is not None:
+            inp.write_supplement(supplement1_me)
         inp.write_seq(self.seq2, firstter=firstter, lastter=lastter, segid='strand2')
         if supplement2 is not None:
             inp.write_supplement(supplement2)
@@ -148,6 +156,7 @@ class AvgcrddcdAgent:
         elif self.type_na == 'bdna+bdna':
             supplement1 = get_patch(self.seq1, 1)
             supplement2 = get_patch(self.seq2, 2)
+            supplement1_me = get_patch_me(self.seqme1, 1)
 
         f_inp = path.join(self.inp_folder, 'write_no_h_avg_crd.inp')
         crd_inp = path.join(self.heavy_folder, '{0}.nohydrogen.crd'.format(self.type_na))
@@ -160,6 +169,8 @@ class AvgcrddcdAgent:
         inp.write_seq(self.seq1, firstter=firstter, lastter=lastter, segid='strand1')
         if supplement1 is not None:
             inp.write_supplement(supplement1)
+        if supplement1_me is not None:
+            inp.write_supplement(supplement1_me)
         inp.write_seq(self.seq2, firstter=firstter, lastter=lastter, segid='strand2')
         if supplement2 is not None:
             inp.write_supplement(supplement2)
@@ -180,6 +191,7 @@ class AvgcrddcdAgent:
         elif self.type_na == 'bdna+bdna':
             supplement1 = get_patch(self.seq1, 1)
             supplement2 = get_patch(self.seq2, 2)
+            supplement1_me = get_patch_me(self.seqme1, 1)
 
         f_inp = path.join(self.inp_folder, 'fit_dcd_to_avg.inp')
         crd_inp = path.join(self.heavy_folder, '{0}.nohydrogen.avg.crd'.format(self.type_na))
@@ -193,6 +205,8 @@ class AvgcrddcdAgent:
         inp.write_seq(self.seq1, firstter=firstter, lastter=lastter, segid='strand1')
         if supplement1 is not None:
             inp.write_supplement(supplement1)
+        if supplement1_me is not None:
+            inp.write_supplement(supplement1_me)
         inp.write_seq(self.seq2, firstter=firstter, lastter=lastter, segid='strand2')
         if supplement2 is not None:
             inp.write_supplement(supplement2)
@@ -214,6 +228,7 @@ class AvgcrddcdAgent:
         elif self.type_na == 'bdna+bdna':
             supplement1 = get_patch(self.seq1, 1)
             supplement2 = get_patch(self.seq2, 2)
+            supplement1_me = get_patch_me(self.seqme1, 1)
 
         f_inp = path.join(self.inp_folder, 'convert_avgcrd_avgdcd.inp')
         crd_inp = path.join(self.heavy_folder, '{0}.nohydrogen.avg.crd'.format(self.type_na))
@@ -225,6 +240,8 @@ class AvgcrddcdAgent:
         inp.write_seq(self.seq1, firstter=firstter, lastter=lastter, segid='strand1')
         if supplement1 is not None:
             inp.write_supplement(supplement1)
+        if supplement1_me is not None:
+            inp.write_supplement(supplement1_me)
         inp.write_seq(self.seq2, firstter=firstter, lastter=lastter, segid='strand2')
         if supplement2 is not None:
             inp.write_supplement(supplement2)
