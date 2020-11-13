@@ -1,4 +1,4 @@
-d_restype = {'nucleic acid': {'A': 'ADE', 'T': 'THY', 'C': 'CYT', 'G': 'GUA', 'U': 'URA'},
+d_restype = {'nucleic acid': {'A': 'ADE', 'T': 'THY', 'C': 'CYT', 'G': 'GUA', 'U': 'URA', 'X': 'DMC'},
             }
 
 
@@ -27,12 +27,13 @@ class Script:
 
     def initialize_rtf_prm(self, rtfprm_folder='/Users/alayah361/fluctmatch', amber=False):
         self.f.write('set topdir = {0}\n\n'.format(rtfprm_folder))
+    ## parm14sb_all.prm + parm14sb_all.rtf
         if amber:
-            self.f.write('open unit 11 read form name @topdir/parm14sb_all.rtf\n')
+            self.f.write('open unit 11 read form name @topdir/parm14sb_methy.rtf\n')
             self.f.write('read rtf card unit 11\n')
             self.f.write('close unit 11\n\n')
 
-            self.f.write('open read unit 11 card name @topdir/parm14sb_all.prm\n')
+            self.f.write('open read unit 11 card name @topdir/parm14sb_methy.prm\n')
             self.f.write('read param unit 11 flex\n')
             self.f.write('close unit 11\n\n')
         else:
