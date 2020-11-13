@@ -3,9 +3,10 @@
 #       This program convert gromac's output pdb into pdb which charmm can process 
 
 rootfolder=/Users/alayah361/fluctmatch
-host=me3
+host=me123
 type_na=bdna+bdna
 strand_num=2
+
 
 if [ $type_na == "arna+arna" ]; then
         na=arna

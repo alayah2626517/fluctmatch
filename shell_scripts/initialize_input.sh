@@ -4,7 +4,7 @@
 
 # Ad hocs
 rootfolder=/Users/alayah361/fluctmatch
-host=me3
+host=me123
 type_na=bdna+bdna
 
 if [ $type_na == "arna+arna" ]; then
