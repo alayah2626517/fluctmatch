@@ -2,8 +2,8 @@
 # Program:
 #       This program convert gromac's output pdb into pdb which charmm can process 
 
-rootfolder=/Users/alayah361/fluctmatch
-host=me123
+rootfolder=/Users/alayah361/fluctmatch/cg_21
+host=21_allme
 type_na=bdna+bdna
 strand_num=2
 

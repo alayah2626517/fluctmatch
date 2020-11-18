@@ -3,8 +3,8 @@
 #       This program sets up dcd and pdb of central base-pairs
 
 # Ad hocs
-rootfolder=/Users/alayah361/fluctmatch
-host=me123
+rootfolder=/Users/alayah361/fluctmatch/cg_21
+host=21_allme
 type_na=bdna+bdna
 
 if [ $type_na == "arna+arna" ]; then
