@@ -135,7 +135,7 @@ def main(rootfolder, host, type_na, cutoff, start, end, charmm):
     charmmdatfolder = path.join(nadir, 'charmm_dat')
     icfolder = path.join(nadir, 'ic')
     datafolder = path.join(nadir, 'data')
-    scratchfolder = path.join(nadir, 'scratch') 
+    scratchfolder = path.join(nadir, 'scratch')
 
     # IC fluct
     icfluct_inp = path.join(charmminpfolder, 'ic_fluct_{0:.2f}.inp'.format(cutoff))
